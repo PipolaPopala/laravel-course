@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('title', 255);
             $table->text('content')->nullable();
-            $table->text('description')->nullable();
             $table->string('author')->index();
             $table->unsignedSmallInteger('like');
             $table->unsignedSmallInteger('views');
             $table->string('category');
             $table->string('tag');
             $table->boolean('is_active')->default(true);
+            $table->unsignedSmallInteger('status')->default(1);
             $table->dateTime('published_at');
             $table->timestamps();
         });

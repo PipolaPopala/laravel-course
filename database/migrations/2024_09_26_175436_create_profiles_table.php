@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('user');
             $table->string('login');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->text('description')->nullable();
             $table->text('address')->nullable();
             $table->unsignedSmallInteger('phone')->nullable();
-            $table->text('gender')->nullable();
+            $table->unsignedSmallInteger('gender')->nullable();
+            $table->date('birthed_at')->nullable();
             $table->timestamps();
         });
     }

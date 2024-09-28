@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+//    protected $guarded = false; // более популярный подход, но, чтобы не писать эту строчку в каждой можели внесём изменения в AppServiceProvider
+
+//    protected $fillable = [
+//        'title',
+//        'content',
+//        'description',
+//        'author',
+//        'like',
+//        'views',
+//        'category',
+//        'tag',
+//        'is_active',
+//        'published_at',
+//    ];
+// этот подход позволяет на этом этапе профильтровать полученный массив и в итоге добавить запись именно с указанными здесь полями, остальные просто игнорируются, выглядит более защищённым вариантом, но, используется реже, наверное, потому что больше кода писать нужно
+
 }
