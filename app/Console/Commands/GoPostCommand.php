@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Models\Post;
 use Illuminate\Console\Command;
 
-class GoCommand extends Command
+class GoPostCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'go';
+    protected $signature = 'go-post';
 
     /**
      * The console command description.
