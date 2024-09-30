@@ -36,7 +36,7 @@ class ProfileController extends Controller
         $profile->update(['description' => 'update description']);
     }
 
-    public function delete(Profile $profile)
+    public function destroy(Profile $profile)
     {
         $profile->delete();
         return responce([

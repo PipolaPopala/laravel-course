@@ -1,7 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Post\StoreRequest;
+use App\Http\Requests\Api\Post\UpdateRequest;
+use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
 use App\Service\PostService;
 use Illuminate\Http\Request;
@@ -12,34 +16,26 @@ class PostController extends Controller
     //
     public function index()
     {
-        return Post::all();
+        return PostResource::collection(Post::all())->resolve();
     }
 
     public function show(Post  $post)
     {
 //        $post = Post::findOrFail($id); // тот же функционал, который присходит, если в параметре прописано 'Post  $post', а не просто '$post'
-        return $post;
+        return PostResource::make($post)->resolve();
     }
 
-    public function store()
+    public function store(StoreRequest $request)
     {
-        $data = [
-            'title' => 'my title',
-            'content' => 'my content',
-            'author' => 'IVAN',
-            'like' => 10,
-            'views' => 100,
-            'category' => 'PHP',
-            'tag' => 'LARAVEL',
-            'published_at' => '2020-12-20',
-        ];
+        $data = $request->validated();
         $post = PostService::create($data);
         return $post;
     }
 
-    public function update(Post  $post)
+    public function update(UpdateRequest $request, Post $post)
     {
-        $post->update(['title' => 'another title']);
+        $data = $request->validated();
+        $post->update($data);
         return $post;
     }
 

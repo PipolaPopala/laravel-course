@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('post_id')->index();
             $table->text('content');
             $table->unsignedSmallInteger('status')->default(1);
-            $table->unsignedSmallInteger('like');
+            $table->unsignedBigInteger('like');
             $table->unsignedSmallInteger('parent_id');
             $table->timestamps();
         });

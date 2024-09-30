@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title', 255);
             $table->text('content')->nullable();
             $table->string('author')->index();
-            $table->unsignedSmallInteger('like');
-            $table->unsignedSmallInteger('views');
+            $table->unsignedBigInteger('like');
+            $table->unsignedBigInteger('views');
             $table->string('category');
             $table->string('tag');
             $table->boolean('is_active')->default(true);
