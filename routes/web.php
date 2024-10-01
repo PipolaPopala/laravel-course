@@ -20,13 +20,13 @@ Route::get('/', function () {
 //Route::get('posts/edit');
 
 //Route::get('comment/index', [CommentController::class, 'index']);
-//Route::get('comment/{post}/show', [CommentController::class, 'show']);
+//Route::get('comment/{comment}/show', [CommentController::class, 'show']);
 //Route::get('comment/store', [CommentController::class, 'store']);
-//Route::get('comment/{post}/update', [CommentController::class, 'update']);
-//Route::get('comment/{post}/delete', [CommentController::class, 'destroy']);
+//Route::get('comment/{comment}/update', [CommentController::class, 'update']);
+//Route::get('comment/{comment}/delete', [CommentController::class, 'destroy']);
 
 //Route::get('profile/index', [ProfileController::class, 'index']);
-//Route::get('profile/{post}/show', [ProfileController::class, 'show']);
+//Route::get('profile/{profile}/show', [ProfileController::class, 'show']);
 //Route::get('profile/store', [ProfileController::class, 'store']);
-//Route::get('profile/{post}/update', [ProfileController::class, 'update']);
-//Route::get('profile/{post}/delete', [ProfileController::class, 'destroy']);
+//Route::get('profile/{profile}/update', [ProfileController::class, 'update']);
+//Route::get('profile/{profile}/delete', [ProfileController::class, 'destroy']);

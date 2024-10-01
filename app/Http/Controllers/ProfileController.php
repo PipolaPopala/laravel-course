@@ -39,7 +39,7 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         $profile->delete();
-        return responce([
+        return response([
             'message' => 'delete success'
         ], Response::HTTP_OK);
     }
