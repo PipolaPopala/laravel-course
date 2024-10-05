@@ -25,4 +25,18 @@ class Post extends Model
 //    ];
 // этот подход позволяет на этом этапе профильтровать полученный массив и в итоге добавить запись именно с указанными здесь полями, остальные просто игнорируются, выглядит более защищённым вариантом, но, используется реже, наверное, потому что больше кода писать нужно
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Profile::class, 'post_profile_likes', 'post_id', 'profile_id');
+    }
 }

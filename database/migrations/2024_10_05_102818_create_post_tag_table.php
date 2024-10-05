@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->string('author', 255)->index();
-            $table->text('content');
-            $table->unsignedSmallInteger('status')->default(1);
-            $table->unsignedBigInteger('like');
             $table->foreignId('post_id')->index()->constrained('posts');
-            $table->foreignId('profile_id')->index()->constrained('profiles');
-            $table->foreignId('parent_id')->index()->constrained('comments');
+            $table->foreignId('tag_id')->index()->constrained('tags');
             $table->timestamps();
+            $table->unique(['post_id', 'tag_id']);
         });
     }
 
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('post_tag');
     }
 };

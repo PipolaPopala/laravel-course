@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('title', 255);
             $table->text('content')->nullable();
-            $table->string('author')->index();
-            $table->unsignedBigInteger('like');
-            $table->unsignedBigInteger('views');
-            $table->string('category');
-            $table->string('tag');
+            $table->unsignedBigInteger('like')->default(0);
+            $table->unsignedBigInteger('views')->default(0);
             $table->boolean('is_active')->default(true);
             $table->unsignedSmallInteger('status')->default(1);
             $table->dateTime('published_at');
+            $table->foreignId('profile_id')->index()->constrained('profiles');
+            $table->foreignId('category_id')->index()->constrained('categories');
+            $table->foreignId('tag_id')->index()->constrained('tags');
             $table->timestamps();
         });
     }
