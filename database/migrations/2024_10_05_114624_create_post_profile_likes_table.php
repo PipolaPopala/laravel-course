@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('post_id')->index()->constrained('posts');
             $table->foreignId('profile_id')->index()->constrained('profiles');
             $table->timestamps();
+            $table->unique(['post_id', 'profile_id']);
         });
     }
 

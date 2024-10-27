@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -25,17 +27,22 @@ class Post extends Model
 //    ];
 // этот подход позволяет на этом этапе профильтровать полученный массив и в итоге добавить запись именно с указанными здесь полями, остальные просто игнорируются, выглядит более защищённым вариантом, но, используется реже, наверное, потому что больше кода писать нужно
 
-    public function category()
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }
 
-    public function likes()
+    public function likes(): BelongsToMany
     {
         return $this->belongsToMany(Profile::class, 'post_profile_likes', 'post_id', 'profile_id');
     }

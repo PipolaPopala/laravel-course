@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            // здесь прописать foreign key для role и изменить порядок миграций?
             $table->timestamps();
         });
 
