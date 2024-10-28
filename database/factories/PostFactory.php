@@ -21,7 +21,6 @@ class PostFactory extends Factory
         return [
             'title' => fake()->realTextBetween(6, 255),
             'content' => fake()->realTextBetween(100, 1000),
-            'like' => fake()->numberBetween(10, 100),
             'views' => fake()->numberBetween(10, 100),
             'is_active' => fake()->boolean,
             'status' => fake()->numberBetween(1,3),

@@ -14,12 +14,12 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $post = Post::factory(20)->create();
+        $postArray = Post::factory(20)->create();
 
         $tagIds = Tag::all()->pluck('id');
 
-        foreach ($post as $post) {
-            $post->tags()->attach($tagIds->random(fake()->numberBetween(1, 4)));
+        foreach ($postArray as $post) {
+            $post->tags()->attach($tagIds->random(fake()->numberBetween(1, 5)));
         }
     }
 }
