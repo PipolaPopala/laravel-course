@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->text('description')->nullable();
             $table->text('address')->nullable();
-            $table->unsignedSmallInteger('phone')->nullable();
+            $table->unsignedBigInteger('phone')->nullable();
             $table->unsignedSmallInteger('gender')->nullable();
             $table->date('birthed_at')->nullable();
             $table->foreignId('user_id')->index()->constrained('users');
