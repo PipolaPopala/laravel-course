@@ -86,25 +86,46 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $roles = [
+            'admin' => 'admin',
+            'manager' => 'manager',
+            'user' => 'user',
+            'guest' => 'guest',
+        ];
+
+        foreach ($roles as $roleName) {
+            Role::firstOrCreate(['title' => $roleName]);
+        }
+
+        $this->call([
+            CategorySeeder::class,
+            TagSeeder::class,
+        ]);
+
         foreach ($prepareUsersData as $prepareUserData) {
+            $role = Role::where('title', $prepareUserData['role'])->first();
+
             $user = User::firstOrCreate([
                 'email' => $prepareUserData['email'],
             ], [
                 'name' => $prepareUserData['name'],
                 'password' => Hash::make($prepareUserData['password']),
             ]);
-            $user->profile()->firstOrCreate([], $prepareUserData['profile']);
+//            ->has(Role::factory(['title' => $prepareUserData['role']])->count(1));
+            $user->roles()->attach($role->id); // наверняка потом переделаю отношения роли к юзеру, не как многие ко многим, а как один к омногим, тогда будет по другому здесь код
 
-//            $profile = Profile::factory()
-//                ->count(1)
-//                ->for($user)
-//                ->has(Role::factory(['name' => $prepareUserData['role']])->count(1))
-//                ->has(
-//                    Post::factory()->count(10)
-//                    ->has(Comment::factory()->count(10))
-//                    ->hasAttached(Tag::inRandomOrder()->first())
-//                )
-//                ->create(['name' => $prepareUserData['name']]);
+//            $profile = $user->profile()->firstOrCreate(['user_id' => $user->id], $prepareUserData['profile']); // альтернативный вариант создания профиля через связь, а не через обращение к модели профиля
+//            $profile = Profile::firstOrCreate(['user_id' => $user->id], $prepareUserData['profile']); // альтернативный вариант создания профиля не через связь, а через обращение к модели профиля
+
+            $profile = Profile::factory()
+                ->for($user)
+                ->has(
+                    Post::factory()
+                    ->count(fake()->numberBetween(1,4))
+                    ->has(Comment::factory()->count(fake()->numberBetween(0,4)))
+//                    ->hasAttached(Tag::inRandomOrder()->take(fake()->numberBetween(1, 3)))
+                )
+                ->create($prepareUserData['profile']);
         }
 
 //        $user = User::firstOrCreate([
@@ -113,13 +134,11 @@ class DatabaseSeeder extends Seeder
 //           'name' => 'admin',
 //            'password' => Hash::make('password')
 //        ]);
-//        $user->profile()->firstOrCreate();
+//        $user->profile()->firstOrCreate(); // простейший вариант создать преподготовленого пользователя без особых данных
 
-        $this->call([
-//            CategorySeeder::class,
-//            TagSeeder::class,
+//        $this->call([
 //            PostSeeder::class,
 //            CommentSeeder::class,
-        ]);
+//        ]);
     }
 }

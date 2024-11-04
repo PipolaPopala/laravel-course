@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Comment;
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CommentSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Comment::factory(30)->create();
+        Role::factory(4)->create();
     }
 }

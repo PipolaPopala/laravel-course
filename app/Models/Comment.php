@@ -20,4 +20,14 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    public function category(): BelongsTo
+    {
+        return $this->post->category();
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->profile->user();
+    }
 }

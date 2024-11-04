@@ -23,7 +23,7 @@ class CommentFactory extends Factory
             'content' => fake()->realTextBetween(100, 1000),
             'status' => fake()->numberBetween(1,3),
             'profile_id' => Profile::inRandomOrder()->first()->id,
-            'post_id' => Post::inRandomOrder()->first()->id,
+//            'post_id' => Post::inRandomOrder()->first()->id,
 //            'parent_id' => Comment::factory()->create()->id,
         ];
     }
